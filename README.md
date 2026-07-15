@@ -1,16 +1,67 @@
-# React + Vite
+# Markdown to DOCX/PDF Converter
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A production-ready React web app that converts Markdown content into downloadable **DOCX** and **PDF** files directly in the browser.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Live Markdown editor and preview
+- Export Markdown to `.docx`
+- Export Markdown to `.pdf`
+- Client-side processing (no backend required)
+- Sanitized preview rendering with DOMPurify
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React + Vite
+- `marked` for Markdown parsing
+- `docx` + `file-saver` for DOCX generation and download
+- `jspdf` for PDF generation
+- `oxlint` for linting
 
-## Expanding the Oxlint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### Prerequisites
+
+- Node.js 20+
+- npm 10+
+
+### Install
+
+```bash
+npm install
+```
+
+### Run locally
+
+```bash
+npm run dev
+```
+
+### Build for production
+
+```bash
+npm run build
+```
+
+### Preview production build
+
+```bash
+npm run preview
+```
+
+### Quality checks
+
+```bash
+npm run check
+```
+
+## Publish Standard Notes
+
+- Uses a production build pipeline (`vite build`)
+- Includes lint + build check command (`npm run check`)
+- Includes MIT license for open distribution
+- Uses secure HTML sanitization in preview rendering
+
+## License
+
+MIT
