@@ -1,0 +1,42 @@
+{
+  "name": "md-file-to-doc-pdf-converter",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "check": "npm run lint && npm run build"
+  },
+  "dependencies": {
+    "docx": "^9.7.1",
+    "dompurify": "^3.4.12",
+    "file-saver": "^2.0.5",
+    "jspdf": "^4.2.1",
+    "marked": "^18.0.6",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "oxlint": "^1.71.0",
+    "vite": "^8.1.1"
+  },
+  "description": "Web app to convert Markdown files to DOCX and PDF",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neda420/md-file-to-doc-pdf-converter-.git"
+  },
+  "keywords": [
+    "markdown",
+    "docx",
+    "pdf",
+    "converter"
+  ],
+  "author": "neda420",
+  "license": "MIT"
+}
