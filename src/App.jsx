@@ -109,12 +109,31 @@ const markdownToPdfLines = (markdown) =>
 
 function App() {
   const [markdown, setMarkdown] = useState(DEFAULT_MARKDOWN)
+  const [markdownLanguage, setMarkdownLanguage] = useState('gfm')
+  const [loadedFileName, setLoadedFileName] = useState('')
+  const [fileLoadError, setFileLoadError] = useState('')
   const [isExporting, setIsExporting] = useState(false)
 
   const previewHtml = useMemo(() => {
-    const html = marked.parse(markdown, { breaks: true, gfm: true })
+    const useGfm = markdownLanguage === 'gfm'
+    const html = marked.parse(markdown, { breaks: useGfm, gfm: useGfm })
     return DOMPurify.sanitize(html)
-  }, [markdown])
+  }, [markdown, markdownLanguage])
+
+  const handleMarkdownFileChange = async (event) => {
+    const [file] = event.target.files ?? []
+    event.target.value = ''
+    if (!file) return
+
+    try {
+      const text = await file.text()
+      setMarkdown(text)
+      setLoadedFileName(file.name)
+      setFileLoadError('')
+    } catch {
+      setFileLoadError('Could not read this file. Please try another markdown file.')
+    }
+  }
 
   const handleDocxDownload = async () => {
     setIsExporting(true)
@@ -175,6 +194,31 @@ function App() {
           <div className="panel-header">
             <h2>Markdown Input</h2>
           </div>
+          <div className="input-controls">
+            <label className="field-group">
+              <span>Markdown language</span>
+              <select
+                aria-label="Markdown language"
+                value={markdownLanguage}
+                onChange={(event) => setMarkdownLanguage(event.target.value)}
+              >
+                <option value="gfm">GitHub Flavored Markdown</option>
+                <option value="commonmark">CommonMark</option>
+              </select>
+            </label>
+
+            <label className="file-picker">
+              <span>Load markdown file</span>
+              <input
+                aria-label="Load markdown file"
+                type="file"
+                accept=".md,.markdown,.mdown,.mkd,.txt,text/markdown,text/plain"
+                onChange={handleMarkdownFileChange}
+              />
+            </label>
+          </div>
+          {loadedFileName && <p className="helper-text">Loaded file: {loadedFileName}</p>}
+          {fileLoadError && <p className="helper-text error">{fileLoadError}</p>}
           <textarea
             aria-label="Markdown editor"
             value={markdown}

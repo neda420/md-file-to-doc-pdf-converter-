@@ -5,6 +5,8 @@ A production-ready React web app that converts Markdown content into downloadabl
 ## Features
 
 - Live Markdown editor and preview
+- Load Markdown from local `.md`/`.txt` files
+- Markdown language selection (GFM or CommonMark)
 - Export Markdown to `.docx`
 - Export Markdown to `.pdf`
 - Client-side processing (no backend required)
