@@ -55,6 +55,13 @@ npm run preview
 npm run check
 ```
 
+## Publish with GitHub Actions
+
+- The repository includes `.github/workflows/publish.yml` to build and deploy to GitHub Pages.
+- Deploy runs automatically on pushes to `main` and can also be started manually from the Actions tab.
+- In repository settings, set **Pages** source to **GitHub Actions**.
+- The workflow runs `npm run check`, builds the app, and publishes the `dist` output.
+
 ## Publish Standard Notes
 
 - Uses a production build pipeline (`vite build`)
